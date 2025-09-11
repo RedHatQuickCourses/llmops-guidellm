@@ -1,5 +1,5 @@
-name: REPLACEREPONAME
-title: FIXME Course Title
+name: llmops-guidellm
+title: Model Performance Benchmarking with GuideLLM
 version: 1
 nav:
 - modules/ROOT/nav.adoc

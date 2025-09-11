@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: REPLACEREPONAME::index.adoc
+  title: Model Performance Benchmarking with GuideLLM
+  start_page: llmops-guidellm::index.adoc
 
 content:
   sources:
