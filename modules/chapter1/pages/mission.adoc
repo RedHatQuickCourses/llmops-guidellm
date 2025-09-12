@@ -8,14 +8,14 @@ Welcome, AI Operator! Before you dive into benchmarking with GuideLLM, it's impo
 
 This entire learning path is a series of missions. Your current objective is the crucial starting point for all that follows.
 
-* **This Mission: Benchmark the Battlefield with GuideLLM**
+* **This Mission: Model Performance Benchmarking with GuideLLM**
 +
 --
 Your task is to master the art of measurement. Before you can improve anything, you must first establish a baseline. You will learn to answer the question: "Is this model fast enough for my application?"
 --
-* **Mission 2: Validate Your Ally's Strength with lm-eval-harness**
-* **Mission 3: Tune Your Engine with vLLM Optimization**
-* **Mission 4: Travel Light and Fast with LLM Compressor**
+* **Mission 2: Evaluating Model Accuracy with lm-eval-harness**
+* **Mission 3: Optimizing vLLM Performance**
+* **Mission 4: Model Quantization with LLM Compressor**
 
 === The Rules of Engagement
 
