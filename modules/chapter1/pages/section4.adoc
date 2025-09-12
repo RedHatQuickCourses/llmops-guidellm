@@ -1,4 +1,4 @@
-= Module 4: Advanced Benchmarking Scenarios
+= Advanced Benchmarking Scenarios
 
 In this module, you will run a series of targeted tests to simulate common customer use cases and understand how different workloads impact performance.
 

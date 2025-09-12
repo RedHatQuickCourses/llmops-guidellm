@@ -1,4 +1,4 @@
-= Module 3: Interpreting Benchmark Results
+= Interpreting Benchmark Results
 
 Understanding the output is crucial for drawing meaningful conclusions. This module breaks down the key metrics and how to interpret them.
 
