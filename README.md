@@ -1,60 +1,31 @@
-## Getting started with a new training content repository
+# Model Performance Benchmarking with GuideLLM
 
-- Open the [course-starter-template](https://github.com/RedHatQuickCourses/course-starter-template)
+## Introduction
 
-- Click on `Use This template` button and select `Create a new repository` option.
+**Course Title:** Model Performance Benchmarking with GuideLLM
 
-![use-this-template.png](./images/use-this-template.png)
+**Description:**
+This hands-on course teaches you how to quantitatively measure, analyze, and optimize the performance of Large Language Models (LLMs) deployed on Red Hat OpenShift AI. You will use GuideLLM, an industry-standard benchmarking toolkit, within an automated Tekton pipeline to simulate real-world workloads and capture critical performance data. The course focuses on translating technical metrics into actionable business insights related to user experience, scalability, and cost efficiency.
 
-- On `Create a new repository` page, Select the options as highlighted in the below image and then click `Create repository` button at the bottom of the page.
+**Duration:** 2 hours
 
-![create-new-repo.png](./images/create-new-repo.png)
+---
 
-- Clone this repository on your local system:
-```
-git clone git@github.com:RedHatQuickCourses/my-training-repository.git
-```
-NOTE: Use your repository url in the above command.
+## Objectives
 
-- Go in to the course repository directory and initialize the course.
-``` 
-cd my-training-repository/
-sh course-init.sh --type bfx --lab demo
-```
-NOTE: If you are using Mac, use *zsh* in place of *sh* in the above command.
+On completing this course, you should be able to:
 
-Sample output:
-```
-Initializing my-training-repository . . . done
+* Deploy and configure an automated benchmarking pipeline using GuideLLM and Tekton on OpenShift AI.
+* Execute various performance tests that simulate real-world use cases like chat, RAG, and code generation.
+* Analyze and interpret key performance metrics, including latency (Time to First Token, Inter-Token Latency), throughput, and their statistical distributions (mean, median, p99).
+* Connect performance results to business outcomes, such as infrastructure sizing, cost estimation, and defining Service Level Objectives (SLOs).
 
-Please replace the specified strings in the files below and commit the changes before proceeding with the course development.
-antora.yml:title: REPLACE Course Title
-```
+---
 
-- Edit the files prompted by course initialization script.
+## Prerequisites
 
-- Commit the changes done by course initialization script and your manual edits.
-```
- git status 
- git add -A; git commit -m "course initialization"
- git push origin main 
-```
+This course assumes that you have the following prior experience:
 
-- Browse your git repository url 
-
-- On your github repo page, on left hand side pane, click on settings gear icon near `About` heading.
-
-- Click `Use your GitHub Pages website` option to select (checked) it and then click `Save changes` button.
-
-![github-pages-setting](./images/github-pages-setting.png)
-
-- You should now see the link to access the rendered content within that same block.
-
-![quickcourse-rendered-url](./images/quickcourse-rendered-url.png)
-
-FIXME: highlight the relevant area on images.
-
-**SEE ALSO**
-
-- [Development using devspace](./DEVSPACE.md)
-- [Guideline for editing your content](./USAGEGUIDE.adoc)
+* Foundational knowledge of Large Language Models and the basics of model serving.
+* Familiarity with using the OpenShift command-line interface (`oc`) to interact with a cluster.
+* Access to a Red Hat OpenShift AI cluster with an available GPU node and a deployed LLM inference service (e.g., vLLM).
