@@ -54,32 +54,29 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#intro.adoc">intro.adoc</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mission.html">Your Place in the Adventure</a>
+    <a class="nav-link" href="mission.html">Mission One</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Evaluating System Performance with GuideLLM</a>
+    <a class="nav-link" href="index.html">Model Performance Benchmarking with GuideLLM</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section1.html">Introduction to Performance Benchmarking</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section2.html">Running Your First Benchmark</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section3.html">Interpreting Benchmark Results</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section4.html">Advanced Benchmarking Scenarios</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="section5.html">Course Wrap-up</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">From Benchmarks to Business Insights</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Course Wrap-up</a>
   </li>
 </ul>
   </li>
@@ -113,9 +110,7 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Model Performance Benchmarking with GuideLLM</a></li>
-    <li><a href="#intro.adoc">intro.adoc</a></li>
-    <li><a href="index.html">Evaluating System Performance with GuideLLM</a></li>
+    <li><a href="index.html">Model Performance Benchmarking with GuideLLM</a></li>
     <li><a href="section4.html">Advanced Benchmarking Scenarios</a></li>
   </ul>
 </nav>
@@ -130,6 +125,23 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>In this module, you will run a series of targeted tests to simulate common customer use cases and understand how different workloads impact performance.</p>
+</div>
+<div class="listingblock execute">
+<div class="title">tkn pipeline start command</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">tkn pipeline start guidellm-benchmark-pipeline -n vllm \
+  --param target=$INFERENCE_ENDPOINT/v1 \
+  --param model-name="granite-8b" \
+  --param processor="ibm-granite/granite-3.3-8b-instruct" \
+  --param data-config="prompt_tokens=512,output_tokens=128" \
+  --param max-seconds="30" \
+  --param huggingface-token="" \
+  --param api-key="" \
+  --param rate="2" \
+  --param rate-type="sweep" \
+  --param max-concurrency="10" \
+  --workspace name=shared-workspace,claimName=guidellm-output-pvc</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -176,6 +188,20 @@
 <div class="paragraph">
 <p><strong>Analysis</strong>: Compare the TTFT, output tokens/sec, and overall latency across these three runs. You will likely see that larger token counts significantly increase latency and reduce throughput.</p>
 </div>
+<hr>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Drop these results into Gemini and use canvas to visualize the results.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/llmops_gemini_ex.png" alt="Gemini example">
+</div>
+</div>
+</div>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect2">
@@ -231,7 +257,7 @@
 </div>
 <nav class="pagination">
   <span class="prev"><a href="section3.html">Interpreting Benchmark Results</a></span>
-  <span class="next"><a href="section5.html">Course Wrap-up</a></span>
+  <span class="next"><a href="section5.html">From Benchmarks to Business Insights</a></span>
 </nav>
 </article>
   </div>

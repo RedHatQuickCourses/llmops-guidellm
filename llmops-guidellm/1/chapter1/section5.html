@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Course Wrap-up :: Model Performance Benchmarking with GuideLLM</title>
+    <title>From Benchmarks to Business Insights :: Model Performance Benchmarking with GuideLLM</title>
     <link rel="prev" href="section4.html">
+    <link rel="next" href="section6.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -53,32 +54,29 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#intro.adoc">intro.adoc</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mission.html">Your Place in the Adventure</a>
+    <a class="nav-link" href="mission.html">Mission One</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Evaluating System Performance with GuideLLM</a>
+    <a class="nav-link" href="index.html">Model Performance Benchmarking with GuideLLM</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section1.html">Introduction to Performance Benchmarking</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section2.html">Running Your First Benchmark</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section3.html">Interpreting Benchmark Results</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Advanced Benchmarking Scenarios</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="section5.html">Course Wrap-up</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section5.html">From Benchmarks to Business Insights</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Course Wrap-up</a>
   </li>
 </ul>
   </li>
@@ -112,10 +110,8 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Model Performance Benchmarking with GuideLLM</a></li>
-    <li><a href="#intro.adoc">intro.adoc</a></li>
-    <li><a href="index.html">Evaluating System Performance with GuideLLM</a></li>
-    <li><a href="section5.html">Course Wrap-up</a></li>
+    <li><a href="index.html">Model Performance Benchmarking with GuideLLM</a></li>
+    <li><a href="section5.html">From Benchmarks to Business Insights</a></li>
   </ul>
 </nav>
 </div>
@@ -124,44 +120,207 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Course Wrap-up</h1>
+<h1 class="page">From Benchmarks to Business Insights</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Congratulations on completing the Model Performance Benchmarking course.</p>
+<p>Next step for a consultant: translating those numbers into a compelling business case. This module provides concepts on how to interpret your benchmark results through the lens of business value, enabling you to provide data-driven recommendations for infrastructure sizing, cost management, and user experience.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_connecting_performance_to_business_outcomes"><a class="anchor" href="#_connecting_performance_to_business_outcomes"></a>Connecting Performance to Business Outcomes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The metrics you&#8217;ve collected are the foundation for strategic conversations. Here&#8217;s how to frame them.</p>
 </div>
 <div class="sect2">
-<h3 id="_summary_of_learnings"><a class="anchor" href="#_summary_of_learnings"></a>Summary of Learnings</h3>
+<h3 id="_cost_performance_analysis"><a class="anchor" href="#_cost_performance_analysis"></a>Cost-Performance Analysis</h3>
 <div class="paragraph">
-<p>In this course, we demonstrated how to evaluate system performance for a deployed Large Language Model using GuideLLM.</p>
+<p>The ultimate goal for many customers is to understand the return on their AI investment. Use your benchmark data to map performance to real-world costs.</p>
+</div>
+<div class="sect3">
+<h4 id="_throughput_based_costing"><a class="anchor" href="#_throughput_based_costing"></a>Throughput-Based Costing</h4>
+<div class="paragraph">
+<p>You can create a simple, powerful formula to quantify value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Cost per 1M Tokens = (GPU Hours for Test x Hourly GPU Rate) / Total Tokens Processed (in Millions)</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>You learned to:</p>
+<p>This metric allows you to directly compare the efficiency of different models or configurations.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defining_quality_of_service_qos_tiers"><a class="anchor" href="#_defining_quality_of_service_qos_tiers"></a>Defining Quality-of-Service (QoS) Tiers</h4>
+<div class="paragraph">
+<p>Not all applications have the same performance requirements. You can use your data to propose tiered service levels, which can align with different business needs and pricing models.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Set up an automated testing environment using a <strong>Tekton pipeline</strong>.</p>
+<p><strong>Premium Tier</strong>: P99 TTFT &lt; 500ms, High throughput. Ideal for customer-facing, real-time chatbots.</p>
 </li>
 <li>
-<p>Run benchmarks using different <strong>workload profiles</strong> (token sizes) and <strong>rate types</strong> (throughput, constant, sweep) to simulate real-world scenarios.</p>
+<p><strong>Standard Tier</strong>: P99 TTFT &lt; 1000ms, Medium throughput. Suitable for internal copilots and productivity tools.</p>
 </li>
 <li>
-<p>Retrieve and analyze key performance metrics, focusing on <strong>latency (TTFT, ITL)</strong> and <strong>throughput</strong>.</p>
-</li>
-<li>
-<p>Understand the critical difference between the <strong>mean, median, and p99</strong> percentiles for assessing user experience and defining SLOs.</p>
+<p><strong>Economy Tier</strong>: P99 TTFT &lt; 2000ms, Lower throughput. Best for asynchronous batch processing jobs.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_capacity_planning_and_sizing_recommendations"><a class="anchor" href="#_capacity_planning_and_sizing_recommendations"></a>Capacity Planning and Sizing Recommendations</h3>
 <div class="paragraph">
-<p>By mastering these skills, you can better align model serving with application needs—whether you’re optimizing for cost, speed, or user experience—and provide data-driven recommendations that deliver significant value to customers.</p>
+<p>Your benchmark results, especially from the <code>sweep</code> test, are crucial for right-sizing infrastructure.</p>
+</div>
+<div class="sect3">
+<h4 id="_analyzing_the_sweep_results"><a class="anchor" href="#_analyzing_the_sweep_results"></a>Analyzing the Sweep Results</h4>
+<div class="paragraph">
+<p>Look for three key points in your data:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Peak Efficiency Point</strong>: Identify the request rate that provides the optimal balance of throughput and latency. This is often the most cost-effective operating point.</p>
+</li>
+<li>
+<p><strong>Linear Scaling Range</strong>: Determine the range where adding more load results in a predictable, linear increase in latency. The system is healthy here.</p>
+</li>
+<li>
+<p><strong>Breaking Point</strong>: Find the request rate where performance degrades exponentially. This is the maximum sustainable load for a single instance.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_simplfied_sizing_formula"><a class="anchor" href="#_a_simplfied_sizing_formula"></a>A Simplfied Sizing Formula</h4>
+<div class="paragraph">
+<p>Use the breaking point to guide hardware recommendations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Required GPUs = (Peak Expected Requests/Second x Safety Margin) / Sustainable Requests/Second per GPU</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A typical safety margin is 1.5x to 2x to handle unexpected traffic spikes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interpreting_critical_performance_indicators"><a class="anchor" href="#_interpreting_critical_performance_indicators"></a>Interpreting Critical Performance Indicators</h3>
+<div class="paragraph">
+<p>To have these business conversations, you must have a deep understanding of the key metrics.</p>
+</div>
+<div class="sect3">
+<h4 id="_time_to_first_token_ttft"><a class="anchor" href="#_time_to_first_token_ttft"></a>Time to First Token (TTFT)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Business Impact</strong>: This directly correlates to the user&#8217;s perception of responsiveness. A low TTFT makes an application feel "snappy."</p>
+</li>
+<li>
+<p><strong>Targets</strong>:</p>
+</li>
+<li>
+<p><code>&lt;200ms</code> for highly interactive applications.</p>
+</li>
+<li>
+<p><code>200-500ms</code> for productivity tools.</p>
+</li>
+<li>
+<p><code>&gt;500ms</code> may indicate an underlying performance issue.</p>
+</li>
+<li>
+<p><strong>Technical Guidance</strong>: High TTFT often points to memory bandwidth limitations or model loading bottlenecks.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inter_token_latency_itl"><a class="anchor" href="#_inter_token_latency_itl"></a>Inter-Token Latency (ITL)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Business Impact</strong>: This affects the smoothness of streaming responses. Low, consistent ITL makes the text appear to flow naturally.</p>
+</li>
+<li>
+<p><strong>Targets</strong>: <code>&lt;50ms</code> provides a very smooth streaming experience.</p>
+</li>
+<li>
+<p><strong>Technical Guidance</strong>: Monitor the P99 value, as this represents the worst-case user experience. High ITL often points to inefficiencies in the compute or batching process.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_request_latency_distribution_mean_vs_median_vs_p99"><a class="anchor" href="#_request_latency_distribution_mean_vs_median_vs_p99"></a>Request Latency Distribution (Mean vs. Median vs. P99)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Mean</strong>: A general overview, useful for high-level capacity planning.</p>
+</li>
+<li>
+<p><strong>Median (p50)</strong>: Represents the <strong>typical user experience</strong>. This is often the most important metric for SLA commitments.</p>
+</li>
+<li>
+<p><strong>P99</strong>: Represents the <strong>worst-case experience</strong> for 99% of users. This is critical for ensuring system reliability and user satisfaction under load.</p>
+</li>
+<li>
+<p><strong>Red Flag</strong>: A large gap between the median and P99 indicates inconsistent performance, often due to queuing or resource contention.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_quick_troubleshooting_guide_for_consultants"><a class="anchor" href="#_a_quick_troubleshooting_guide_for_consultants"></a>A Quick Troubleshooting Guide for Consultants</h3>
+<div class="paragraph">
+<p>When you see poor results, use this framework to diagnose the issue.</p>
+</div>
+<div class="sect3">
+<h4 id="_high_latency_diagnosis"><a class="anchor" href="#_high_latency_diagnosis"></a>High Latency Diagnosis</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>TTFT &gt;&gt; ITL</strong>: The bottleneck is likely in loading the model or transferring data to the GPU (memory bandwidth).</p>
+</li>
+<li>
+<p><strong>ITL &gt;&gt; TTFT</strong>: The bottleneck is in the actual computation (GPU processing power or inefficient batching).</p>
+</li>
+<li>
+<p><strong>Both are High</strong>: The infrastructure is likely undersized for the workload.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_low_throughput_diagnosis"><a class="anchor" href="#_low_throughput_diagnosis"></a>Low Throughput Diagnosis</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Compare <code>synchronous</code> vs <code>throughput</code> results</strong>: A large gap indicates that batching is effective. A small gap suggests batching is not providing much benefit, which could be a configuration issue.</p>
+</li>
+<li>
+<p><strong>Check GPU utilization</strong>: If utilization is low during a throughput test, the bottleneck is likely outside the GPU (e.g., CPU, network, or data preprocessing).</p>
+</li>
+<li>
+<p><strong>Analyze queue depths in logs</strong>: A consistently high number of pending requests points to insufficient processing capacity or a low <code>max-num-seqs</code> setting.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="section4.html">Advanced Benchmarking Scenarios</a></span>
+  <span class="next"><a href="section6.html">Course Wrap-up</a></span>
 </nav>
 </article>
   </div>

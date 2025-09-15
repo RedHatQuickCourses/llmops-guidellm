@@ -54,32 +54,29 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#intro.adoc">intro.adoc</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mission.html">Your Place in the Adventure</a>
+    <a class="nav-link" href="mission.html">Mission One</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Evaluating System Performance with GuideLLM</a>
+    <a class="nav-link" href="index.html">Model Performance Benchmarking with GuideLLM</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section1.html">Introduction to Performance Benchmarking</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section2.html">Running Your First Benchmark</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section3.html">Interpreting Benchmark Results</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Advanced Benchmarking Scenarios</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="section5.html">Course Wrap-up</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">From Benchmarks to Business Insights</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Course Wrap-up</a>
   </li>
 </ul>
   </li>
@@ -113,9 +110,7 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Model Performance Benchmarking with GuideLLM</a></li>
-    <li><a href="#intro.adoc">intro.adoc</a></li>
-    <li><a href="index.html">Evaluating System Performance with GuideLLM</a></li>
+    <li><a href="index.html">Model Performance Benchmarking with GuideLLM</a></li>
     <li><a href="section2.html">Running Your First Benchmark</a></li>
   </ul>
 </nav>
@@ -126,11 +121,67 @@
 </aside>
 <article class="doc">
 <h1 class="page">Running Your First Benchmark</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_setting_up_your_benchmarking_environment"><a class="anchor" href="#_setting_up_your_benchmarking_environment"></a>Setting Up Your Benchmarking Environment</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now that the pipeline is set up, let&#8217;s run our first test. This will help us establish a baseline and understand the end-to-end workflow.</p>
+<p>In this module, we will set up an automated Tekton pipeline on OpenShift AI to run our GuideLLM benchmarks. Using a Tekton pipeline provides automation, reproducibility, and efficient resource management for our tests.</p>
 </div>
+<div class="sect2">
+<h3 id="_1_1_install_the_tekton_cli"><a class="anchor" href="#_1_1_install_the_tekton_cli"></a>1.1 Install the Tekton CLI</h3>
+<div class="paragraph">
+<p>First, ensure the Tekton CLI (<code>tkn</code>) is installed in your terminal. This tool will allow us to interact with our pipelines.</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -sL $(curl -s https://api.github.com/repos/tektoncd/cli/releases/latest | grep "browser_download_url.*_Linux_x86_64.tar.gz" | cut -d '"' -f 4) | sudo tar -xz -C /usr/local/bin tkn
+tkn version</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_2_deploy_the_guidellm_pipeline_resources"><a class="anchor" href="#_1_2_deploy_the_guidellm_pipeline_resources"></a>1.2 Deploy the GuideLLM Pipeline Resources</h3>
+<div class="paragraph">
+<p>Next, we will clone the necessary Git repositories and apply the Kubernetes resources that define our pipeline, its tasks, and the required storage.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone the ETX vLLM optimization repo which contains the pipeline definition.</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">git clone https://github.com/redhat-ai-services/etx-llm-optimization-and-inference-leveraging.git
+cd etx-llm-optimization-and-inference-leveraging</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Clone the GuideLLM pipeline repo itself.</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">git clone https://github.com/jhurlocker/guidellm-pipeline.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the PVC, task, pipeline, and Minio bucket configuration to your cluster. Ensure you are in the correct namespace (<code>vllm</code>).</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">oc apply -f guidellm-pipeline/pipeline/upload-results-task.yaml -n vllm
+oc apply -f guidellm-pipeline/pipeline/guidellm-pipeline.yaml -n vllm
+oc apply -f guidellm-pipeline/pipeline/pvc.yaml -n vllm
+oc apply -f guidellm-pipeline/pipeline/guidellm-benchmark-task.yaml -n vllm
+oc apply -f guidellm-pipeline/pipeline/mino-bucket.yaml -n vllm</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With these resources created, we are now ready to execute a benchmark.</p>
+</div>
+<div class="paragraph">
+<p>Now that the pipeline is set up, let&#8217;s run our first test. This will help us establish a baseline and understand the end-to-end workflow.</p>
 </div>
 </div>
 <div class="sect2">
@@ -155,7 +206,8 @@ echo $INFERENCE_ENDPOINT</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you have not deployed the <code>granite-8b</code> model yet, run the following Helm command: <code>helm upgrade -i granite-8b redhat-ai-services/vllm-kserve --version 0.5.11 --values workshop_code/deploy_vllm/vllm_rhoai_custom_2/values.yaml -n vllm</code>
+If you have not deployed the <code>granite-8b</code> model yet, run the following Helm command:<br>
+<code>helm upgrade -i granite-8b redhat-ai-services/vllm-kserve --version 0.5.11 --values workshop_code/deploy_vllm/vllm_rhoai_custom_2/values.yaml -n vllm</code>
 </td>
 </tr>
 </table>
@@ -203,21 +255,23 @@ If you have not deployed the <code>granite-8b</code> model yet, run the followin
 </li>
 <li>
 <p>Navigate to the Minio URL in your browser, log in, and find the <code>guidellm-benchmark</code> bucket.</p>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="benchmark_results_file_in_minio.png" alt="benchmark results in Minio">
+<img src="_images/benchmark_results_file_in_minio.png" alt="benchmark results in Minio">
 </div>
 </div>
 </li>
 <li>
 <p>Download the <code>benchmark-&lt;TIMESTAMP&gt;.txt</code> file and open it in a text editor to view the raw results.</p>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="benchmark_results_minio.png" alt="benchmark results">
+<img src="_images/benchmark_results_minio.png" alt="benchmark results">
 </div>
 </div>
 </li>
 </ol>
+</div>
+</div>
 </div>
 </div>
 <nav class="pagination">

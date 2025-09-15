@@ -54,32 +54,29 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#intro.adoc">intro.adoc</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mission.html">Your Place in the Adventure</a>
+    <a class="nav-link" href="mission.html">Mission One</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Evaluating System Performance with GuideLLM</a>
+    <a class="nav-link" href="index.html">Model Performance Benchmarking with GuideLLM</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section1.html">Introduction to Performance Benchmarking</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section2.html">Running Your First Benchmark</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section3.html">Interpreting Benchmark Results</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Advanced Benchmarking Scenarios</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="section5.html">Course Wrap-up</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">From Benchmarks to Business Insights</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Course Wrap-up</a>
   </li>
 </ul>
   </li>
@@ -113,9 +110,7 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Model Performance Benchmarking with GuideLLM</a></li>
-    <li><a href="#intro.adoc">intro.adoc</a></li>
-    <li><a href="index.html">Evaluating System Performance with GuideLLM</a></li>
+    <li><a href="index.html">Model Performance Benchmarking with GuideLLM</a></li>
     <li><a href="section3.html">Interpreting Benchmark Results</a></li>
   </ul>
 </nav>
@@ -129,14 +124,14 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Understanding the output is crucial for drawing meaningful conclusions. This module breaks down the key metrics and how to interpret them.</p>
+<p>Understanding the output provides data for drawing meaningful conclusions. This module breaks down the key metrics and how to interpret them.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_3_1_key_guidellm_metrics"><a class="anchor" href="#_3_1_key_guidellm_metrics"></a>3.1 Key GuideLLM Metrics</h3>
 <div class="paragraph">
-<p>GuideLLM captures several critical metrics. Here are the most important ones:</p>
+<p>GuideLLM captures several metrics during a full sweep, here are the most important ones:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -147,7 +142,7 @@
 <p><strong>Request concurrency</strong>: The average number of requests being processed in parallel.</p>
 </li>
 <li>
-<p><strong>Output token per second (mean)</strong>: The generation speed of the model.</p>
+<p><strong>Output token per second (mean)</strong>: The token generation speed of the model.</p>
 </li>
 <li>
 <p><strong>Time to First Token (TTFT)</strong>: How quickly the first token is returned. This is critical for user-perceived responsiveness. (Measured in ms: mean, median, p99).</p>
@@ -172,10 +167,20 @@
 <div class="sect3">
 <h4 id="_top_section_benchmark_info"><a class="anchor" href="#_top_section_benchmark_info"></a>Top Section (Benchmark Info)</h4>
 <div class="paragraph">
-<p>This section summarizes the test parameters.
-* <strong>Benchmark</strong>: The type of benchmark that ran (e.g., <code>constant@2</code> indicates 2 requests per second).
-* <strong>Requests Made</strong>: Total number of requests issued.
-* <strong>Token Data</strong>: Average and total tokens processed.</p>
+<p>This section summarizes the test parameters.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Benchmark</strong>: The type of benchmark that ran (e.g., <code>constant@2</code> indicates 2 requests per second).</p>
+</li>
+<li>
+<p><strong>Requests Made</strong>: Total number of requests issued.</p>
+</li>
+<li>
+<p><strong>Token Data</strong>: Average and total tokens processed.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">

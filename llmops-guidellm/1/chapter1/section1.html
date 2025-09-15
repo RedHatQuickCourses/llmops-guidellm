@@ -54,32 +54,29 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#intro.adoc">intro.adoc</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mission.html">Your Place in the Adventure</a>
+    <a class="nav-link" href="mission.html">Mission One</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Evaluating System Performance with GuideLLM</a>
+    <a class="nav-link" href="index.html">Model Performance Benchmarking with GuideLLM</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="section1.html">Introduction to Performance Benchmarking</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section2.html">Running Your First Benchmark</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section3.html">Interpreting Benchmark Results</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="section4.html">Advanced Benchmarking Scenarios</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="section5.html">Course Wrap-up</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">From Benchmarks to Business Insights</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section6.html">Course Wrap-up</a>
   </li>
 </ul>
   </li>
@@ -113,9 +110,7 @@
   <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Model Performance Benchmarking with GuideLLM</a></li>
-    <li><a href="#intro.adoc">intro.adoc</a></li>
-    <li><a href="index.html">Evaluating System Performance with GuideLLM</a></li>
+    <li><a href="index.html">Model Performance Benchmarking with GuideLLM</a></li>
     <li><a href="section1.html">Introduction to Performance Benchmarking</a></li>
   </ul>
 </nav>
@@ -126,34 +121,9 @@
 </aside>
 <article class="doc">
 <h1 class="page">Introduction to Performance Benchmarking</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_why_performance_evaluation_matters"><a class="anchor" href="#_why_performance_evaluation_matters"></a>Why Performance Evaluation Matters</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Welcome to the Model Performance Benchmarking with GuideLLM course. In this course, you will learn how to quantitatively measure, analyze, and optimize the performance of Large Language Models deployed on Red Hat OpenShift AI.</p>
-</div>
-<div class="paragraph">
-<p>By the end of this course, you will be able to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Set up an automated benchmarking pipeline using GuideLLM and Tekton.</p>
-</li>
-<li>
-<p>Execute various performance tests that simulate real-world workloads.</p>
-</li>
-<li>
-<p>Interpret key performance metrics like latency, throughput, and token generation speed.</p>
-</li>
-<li>
-<p>Connect performance results to business outcomes, such as user experience and infrastructure cost.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_why_performance_evaluation_matters"><a class="anchor" href="#_why_performance_evaluation_matters"></a>Why Performance Evaluation Matters</h3>
 <div class="paragraph">
 <p>In Generative AI systems, evaluating system performance including latency, throughput, and resource utilization is just as important as evaluating model accuracy or quality. Here&#8217;s why:</p>
 </div>
@@ -177,13 +147,57 @@
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_what_is_guidellm"><a class="anchor" href="#_what_is_guidellm"></a>What is GuideLLM?</h3>
+</div>
+<div class="sect1">
+<h2 id="_what_is_guidellm"><a class="anchor" href="#_what_is_guidellm"></a>What is GuideLLM?</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>GuideLLM</strong> is a toolkit for evaluating and optimizing the deployment of LLMs. By simulating real-world inference workloads, GuideLLM enables you to easily assess the performance, resource requirements, and cost implications of deploying LLMs on various hardware configurations. This approach ensures efficient, scalable, and cost-effective LLM inference serving while maintaining high service quality.</p>
 </div>
 <div class="paragraph">
 <p>GuideLLM is now officially a part of the vLLM upstream project. This toolset is one of the primary ways Red Hat internal teams are benchmarking customer models and will be the main framework we will recommend to our customers.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><mark>#</mark> <strong>Trusty AI vs GuideLLM</strong></p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s important to distinguish GuideLLM from Trusty AI. Trusty AI&#8217;s scope is responsible AI (explainability, fairness, bias detection), while GuideLLM is focused purely on system performance benchmarking and optimization.</p>
+</div>
+<div class="paragraph">
+<p>That being said, there are some current crossovers. Trusty AI incorporates lm-eval-harness and GuideLLM is roadmapped to include this test harness as well. Trusty AI will continue to be an incorporated and supported operator deployment in RHOAI. There are currently no plans to have a similar deployment method for GuideLLM.</p>
+</div>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>For our lab today, we will utilize the tekton pipeline on our OpenShift AI cluster. A pipeline deployment provides the following benefits:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Automation and reproducibility</p>
+</li>
+<li>
+<p>Cloud-native / kubernetes-native</p>
+</li>
+<li>
+<p>Scalability and resource optimization</p>
+</li>
+<li>
+<p>Modular</p>
+</li>
+<li>
+<p>Integration with existing MLOps workflows</p>
+</li>
+<li>
+<p>Version control / auditability</p>
+</li>
+<li>
+<p>Better handling of complex, multi-stage workflows</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -192,76 +206,16 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-It&#8217;s important to distinguish GuideLLM from Trusty AI. Trusty AI&#8217;s scope is responsible AI (explainability, fairness, bias detection), while GuideLLM is focused purely on system performance benchmarking and optimization.
+Scalability and resource optimization: benchmarking can be resource intensive particularly when simulating high loads or testing large models. The dynamic provisioning/de-provisioning of necessary resources with tekton can handle this well for the expensive compute.
 </td>
 </tr>
 </table>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_module_1_setting_up_your_benchmarking_environment"><a class="anchor" href="#_module_1_setting_up_your_benchmarking_environment"></a>Module 1: Setting Up Your Benchmarking Environment</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In this module, we will set up an automated Tekton pipeline on OpenShift AI to run our GuideLLM benchmarks. Using a Tekton pipeline provides automation, reproducibility, and efficient resource management for our tests.</p>
-</div>
-<div class="sect2">
-<h3 id="_1_1_install_the_tekton_cli"><a class="anchor" href="#_1_1_install_the_tekton_cli"></a>1.1 Install the Tekton CLI</h3>
-<div class="paragraph">
-<p>First, ensure the Tekton CLI (<code>tkn</code>) is installed in your terminal. This tool will allow us to interact with our pipelines.</p>
-</div>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">curl -sL $(curl -s https://api.github.com/repos/tektoncd/cli/releases/latest | grep "browser_download_url.*_Linux_x86_64.tar.gz" | cut -d '"' -f 4) | sudo tar -xz -C /usr/local/bin tkn
-tkn version</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_1_2_deploy_the_guidellm_pipeline_resources"><a class="anchor" href="#_1_2_deploy_the_guidellm_pipeline_resources"></a>1.2 Deploy the GuideLLM Pipeline Resources</h3>
-<div class="paragraph">
-<p>Next, we will clone the necessary Git repositories and apply the Kubernetes resources that define our pipeline, its tasks, and the required storage.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Clone the ETX vLLM optimization repo which contains the pipeline definition.</p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">git clone https://github.com/redhat-ai-services/etx-llm-optimization-and-inference-leveraging.git
-cd etx-llm-optimization-and-inference-leveraging</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Clone the GuideLLM pipeline repo itself.</p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">git clone https://github.com/jhurlocker/guidellm-pipeline.git</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Apply the PVC, task, pipeline, and Minio bucket configuration to your cluster. Ensure you are in the correct namespace (<code>vllm</code>).</p>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">oc apply -f guidellm-pipeline/pipeline/upload-results-task.yaml -n vllm
-oc apply -f guidellm-pipeline/pipeline/guidellm-pipeline.yaml -n vllm
-oc apply -f guidellm-pipeline/pipeline/pvc.yaml -n vllm
-oc apply -f guidellm-pipeline/pipeline/guidellm-benchmark-task.yaml -n vllm
-oc apply -f guidellm-pipeline/pipeline/mino-bucket.yaml -n vllm</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>With these resources created, we are now ready to execute a benchmark.</p>
-</div>
-</div>
+<hr>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">Evaluating System Performance with GuideLLM</a></span>
+  <span class="prev"><a href="index.html">Model Performance Benchmarking with GuideLLM</a></span>
   <span class="next"><a href="section2.html">Running Your First Benchmark</a></span>
 </nav>
 </article>
