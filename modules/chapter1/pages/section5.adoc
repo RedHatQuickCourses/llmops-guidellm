@@ -1,16 +1,83 @@
-= Course Wrap-up
+= From Benchmarks to Business Insights
 
-Congratulations on completing the Model Performance Benchmarking course.
+Next step for a consultant: translating those numbers into a compelling business case. This module provides concepts on how to interpret your benchmark results through the lens of business value, enabling you to provide data-driven recommendations for infrastructure sizing, cost management, and user experience.
 
-=== Summary of Learnings
+== Connecting Performance to Business Outcomes
 
-In this course, we demonstrated how to evaluate system performance for a deployed Large Language Model using GuideLLM.
+The metrics you've collected are the foundation for strategic conversations. Here's how to frame them.
 
-You learned to:
+=== Cost-Performance Analysis
+The ultimate goal for many customers is to understand the return on their AI investment. Use your benchmark data to map performance to real-world costs.
 
- * Set up an automated testing environment using a **Tekton pipeline**.
- * Run benchmarks using different **workload profiles** (token sizes) and **rate types** (throughput, constant, sweep) to simulate real-world scenarios.
- * Retrieve and analyze key performance metrics, focusing on **latency (TTFT, ITL)** and **throughput**.
- * Understand the critical difference between the **mean, median, and p99** percentiles for assessing user experience and defining SLOs.
+==== Throughput-Based Costing
 
-By mastering these skills, you can better align model serving with application needs—whether you’re optimizing for cost, speed, or user experience—and provide data-driven recommendations that deliver significant value to customers.
+You can create a simple, powerful formula to quantify value:
+[source,text]
+----
+Cost per 1M Tokens = (GPU Hours for Test x Hourly GPU Rate) / Total Tokens Processed (in Millions)
+----
+This metric allows you to directly compare the efficiency of different models or configurations.
+
+==== Defining Quality-of-Service (QoS) Tiers
+
+Not all applications have the same performance requirements. You can use your data to propose tiered service levels, which can align with different business needs and pricing models.
+
+* **Premium Tier**: P99 TTFT < 500ms, High throughput. Ideal for customer-facing, real-time chatbots.
+* **Standard Tier**: P99 TTFT < 1000ms, Medium throughput. Suitable for internal copilots and productivity tools.
+* **Economy Tier**: P99 TTFT < 2000ms, Lower throughput. Best for asynchronous batch processing jobs.
+
+=== Capacity Planning and Sizing Recommendations
+Your benchmark results, especially from the `sweep` test, are crucial for right-sizing infrastructure.
+
+==== Analyzing the Sweep Results
+
+Look for three key points in your data:
+
+. **Peak Efficiency Point**: Identify the request rate that provides the optimal balance of throughput and latency. This is often the most cost-effective operating point.
+. **Linear Scaling Range**: Determine the range where adding more load results in a predictable, linear increase in latency. The system is healthy here.
+. **Breaking Point**: Find the request rate where performance degrades exponentially. This is the maximum sustainable load for a single instance.
+
+==== A Simplfied Sizing Formula
+Use the breaking point to guide hardware recommendations:
+[source,text]
+----
+Required GPUs = (Peak Expected Requests/Second x Safety Margin) / Sustainable Requests/Second per GPU
+----
+A typical safety margin is 1.5x to 2x to handle unexpected traffic spikes.
+
+=== Interpreting Critical Performance Indicators
+
+To have these business conversations, you must have a deep understanding of the key metrics.
+
+==== Time to First Token (TTFT)
+* **Business Impact**: This directly correlates to the user's perception of responsiveness. A low TTFT makes an application feel "snappy."
+* **Targets**:
+    * `<200ms` for highly interactive applications.
+    * `200-500ms` for productivity tools.
+    * `>500ms` may indicate an underlying performance issue.
+* **Technical Guidance**: High TTFT often points to memory bandwidth limitations or model loading bottlenecks.
+
+==== Inter-Token Latency (ITL)
+* **Business Impact**: This affects the smoothness of streaming responses. Low, consistent ITL makes the text appear to flow naturally.
+* **Targets**: `<50ms` provides a very smooth streaming experience.
+* **Technical Guidance**: Monitor the P99 value, as this represents the worst-case user experience. High ITL often points to inefficiencies in the compute or batching process.
+
+==== Request Latency Distribution (Mean vs. Median vs. P99)
+* **Mean**: A general overview, useful for high-level capacity planning.
+* **Median (p50)**: Represents the **typical user experience**. This is often the most important metric for SLA commitments.
+* **P99**: Represents the **worst-case experience** for 99% of users. This is critical for ensuring system reliability and user satisfaction under load.
+* **Red Flag**: A large gap between the median and P99 indicates inconsistent performance, often due to queuing or resource contention.
+
+=== A Quick Troubleshooting Guide for Consultants
+
+When you see poor results, use this framework to diagnose the issue.
+
+==== High Latency Diagnosis
+. **TTFT >> ITL**: The bottleneck is likely in loading the model or transferring data to the GPU (memory bandwidth).
+. **ITL >> TTFT**: The bottleneck is in the actual computation (GPU processing power or inefficient batching).
+. **Both are High**: The infrastructure is likely undersized for the workload.
+
+==== Low Throughput Diagnosis
+. **Compare `synchronous` vs `throughput` results**: A large gap indicates that batching is effective. A small gap suggests batching is not providing much benefit, which could be a configuration issue.
+. **Check GPU utilization**: If utilization is low during a throughput test, the bottleneck is likely outside the GPU (e.g., CPU, network, or data preprocessing).
+. **Analyze queue depths in logs**: A consistently high number of pending requests points to insufficient processing capacity or a low `max-num-seqs` setting.

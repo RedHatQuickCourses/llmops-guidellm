@@ -1,5 +1,55 @@
 = Running Your First Benchmark
 
+
+== Setting Up Your Benchmarking Environment
+
+In this module, we will set up an automated Tekton pipeline on OpenShift AI to run our GuideLLM benchmarks. Using a Tekton pipeline provides automation, reproducibility, and efficient resource management for our tests.
+
+=== 1.1 Install the Tekton CLI
+
+First, ensure the Tekton CLI (`tkn`) is installed in your terminal. This tool will allow us to interact with our pipelines.
+
+[source,console,role=execute,subs=attributes+]
+----
+curl -sL $(curl -s https://api.github.com/repos/tektoncd/cli/releases/latest | grep "browser_download_url.*_Linux_x86_64.tar.gz" | cut -d '"' -f 4) | sudo tar -xz -C /usr/local/bin tkn
+tkn version
+----
+
+=== 1.2 Deploy the GuideLLM Pipeline Resources
+
+Next, we will clone the necessary Git repositories and apply the Kubernetes resources that define our pipeline, its tasks, and the required storage.
+
+. Clone the ETX vLLM optimization repo which contains the pipeline definition.
++
+[source,console,role=execute,subs=attributes+]
+----
+git clone https://github.com/redhat-ai-services/etx-llm-optimization-and-inference-leveraging.git
+cd etx-llm-optimization-and-inference-leveraging
+----
+
+. Clone the GuideLLM pipeline repo itself.
++
+[source,console,role=execute,subs=attributes+]
+----
+git clone https://github.com/jhurlocker/guidellm-pipeline.git
+----
+
+. Apply the PVC, task, pipeline, and Minio bucket configuration to your cluster. Ensure you are in the correct namespace (`vllm`).
++
+[source,console,role=execute,subs=attributes+]
+----
+oc apply -f guidellm-pipeline/pipeline/upload-results-task.yaml -n vllm
+oc apply -f guidellm-pipeline/pipeline/guidellm-pipeline.yaml -n vllm
+oc apply -f guidellm-pipeline/pipeline/pvc.yaml -n vllm
+oc apply -f guidellm-pipeline/pipeline/guidellm-benchmark-task.yaml -n vllm
+oc apply -f guidellm-pipeline/pipeline/mino-bucket.yaml -n vllm
+----
+
+With these resources created, we are now ready to execute a benchmark.
+
+
+
+
 Now that the pipeline is set up, let's run our first test. This will help us establish a baseline and understand the end-to-end workflow.
 
 === 2.1 Prepare the Target Model
@@ -13,7 +63,9 @@ Before running the pipeline, ensure your target model is deployed and accessible
 export INFERENCE_ENDPOINT=$(oc get inferenceservice granite-8b -n vllm -o jsonpath='{.status.url}')
 echo $INFERENCE_ENDPOINT
 ----
-NOTE: If you have not deployed the `granite-8b` model yet, run the following Helm command: `helm upgrade -i granite-8b redhat-ai-services/vllm-kserve --version 0.5.11 --values workshop_code/deploy_vllm/vllm_rhoai_custom_2/values.yaml -n vllm`
+NOTE: If you have not deployed the `granite-8b` model yet, run the following Helm command: +
+`helm upgrade -i granite-8b redhat-ai-services/vllm-kserve --version 0.5.11 --values workshop_code/deploy_vllm/vllm_rhoai_custom_2/values.yaml -n vllm`
+
 
 === 2.2 Execute the Pipeline
 
