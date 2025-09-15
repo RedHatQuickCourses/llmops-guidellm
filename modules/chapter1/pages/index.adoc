@@ -19,18 +19,23 @@ GuideLLM is a toolkit for evaluating and optimizing the deployment of LLMs. By s
 
 GuideLLM is now officially a part of the vLLM upstream project. This toolset is one of the primary ways Red Hat internal teams are benchmarking customer models. GuideLLM will be the main framework we will recommend to our customers with the scope of model performance and optimization. 
 
-### Trusty AI vs GuideLLM
+[]
+****
+### *Trusty AI vs GuideLLM*
 
 Trusty AI maintains the scope of responsable AI, while GuideLLM is focused on benchmarking and model optimization. That being said, there are some current crossovers. Trusty AI incorporates lm-eval-harness and GuideLLM is roadmapped to include this test harness as well. Trusty AI will continue to be an incorporated and supported operator deployment in RHOAI. There are currently no plans to have a similar deployment method for GuideLLM. 
+
+**** 
+
 
 ## Set Up GuideLLM tekton pipeline
 
 There are several current ways you may deploy and use GuideLLM.
 
 * CLI tool: documented in the upstream project.
-* Python library: Not yet in current upstream documentation. You can see an example here in this guide: https://redhatquickcourses.github.io/genai-vllm/genai-vllm/1/rhoai_deploy/guide_llm.html. 
-* Kubernetes job: https://github.com/rh-aiservices-bu/guidellm-pipeline 
-* Tekton pipeline: https://github.com/jhurlocker/guidellm-pipeline.git (forked from above repo) 
+* Python library: Not yet in current upstream documentation. You can see an example here in this guide: https://redhatquickcourses.github.io/genai-vllm/genai-vllm/1/rhoai_deploy/guide_llm.html[,window="_blank"].
+* Kubernetes job: https://github.com/rh-aiservices-bu/guidellm-pipeline[,window="_blank"]
+* Tekton pipeline: https://github.com/jhurlocker/guidellm-pipeline.git[,window="_blank"] (forked from above repo)
 ** Run the below command to install the Tekton CLI
 +
 [source,console,role=execute,subs=attributes+]
@@ -39,15 +44,22 @@ curl -sL $(curl -s https://api.github.com/repos/tektoncd/cli/releases/latest | g
 tkn version
 ----
 
+---
+
 For our lab today, we will utilize the tekton pipeline on our OpenShift AI cluster. A pipeline deployment provides the following benefits:
 
 * Automation and reproducibility
 * Cloud-native / kubernetes-native
-* Scalability and resource optimization: benchmarking can be resource intensive particularly when simulating high loads or testing large models. The dynamic provisioning/de-provisioning of necessary resources with tekton can handle this well which is particularly critical for the expensive compute
+* Scalability and resource optimization
 * Modular
 * Integration with existing MLOps workflows
 * Version control / auditability
 * Better handling of complex, multi-stage workflows
+
+[NOTE]
+Scalability and resource optimization: benchmarking can be resource intensive particularly when simulating high loads or testing large models. The dynamic provisioning/de-provisioning of necessary resources with tekton can handle this well which is particularly critical for the expensive compute
+
+---
 
 First, we'll clone the ETX vLLM optimization repo. Then we'll clone the benchmark pipeline repo, apply the PVC, task, and pipeline. We'll also create an s3 bucket in Minio where the pipeline will upload the benchmark results.
 
@@ -81,7 +93,7 @@ Before running the pipeline, let's review the options for GuideLLM more closely.
 
 ## GuideLLM Arguments
 
-* Peruse the available GuideLLM https://github.com/neuralmagic/guidellm?tab=readme-ov-file#configurations[configuration options]. 
+* Peruse the available GuideLLM https://github.com/neuralmagic/guidellm?tab=readme-ov-file#configurations[configuration options,window="_blank"]. 
 * The GitHub ReadMe gives detailed information about configuration flags
 
 ### Input/Output tokens
@@ -92,18 +104,21 @@ For different use cases, you can set different standardized dataset profiles tha
 * **Summarization (1024/256)**
 * **Code Generation (512/512)**
 
-Using these profiles, we can map specific i/o token scenarios to real-world use cases to make these runs more explainable to how this impacts applications.
+
+---
+
+Using these profiles, we can map specific input/output token scenarios to real-world use cases to make these runs more explainable to how this impacts applications.
 
 ### --rate-type
 
 **--rate-type** defines the type of benchmark to run. By default GuideLLM will do a sweep of available benchmarks, but you may choose to isolate specific benchmark tests. 
 
-* synchronous: Runs a single stream of requests one at a time. --rate must not be set for this mode.
-* throughput: Runs all requests in parallel to measure the maximum throughput for the server (bounded by GUIDELLM__MAX_CONCURRENCY config argument). --rate must not be set for this mode.
-* concurrent: Runs a fixed number of streams of requests in parallel. --rate must be set to the desired concurrency level/number of streams.
-* constant: Sends requests asynchronously at a constant rate set by --rate.
-* poisson: Sends requests at a rate following a Poisson distribution with the mean set by --rate.
-* sweep: Automatically determines the minimum and maximum rates the server can support by running synchronous and throughput benchmarks, and then runs a series of benchmarks equally spaced between the two rates. The number of benchmarks is set by --rate (default is 10).
+* *synchronous:* Runs a single stream of requests one at a time. --rate must not be set for this mode.
+* *throughput:* Runs all requests in parallel to measure the maximum throughput for the server (bounded by GUIDELLM__MAX_CONCURRENCY config argument). --rate must not be set for this mode.
+* *concurrent:* Runs a fixed number of streams of requests in parallel. --rate must be set to the desired concurrency level/number of streams.
+* *constant:* Sends requests asynchronously at a constant rate set by --rate.
+* *poisson:* Sends requests at a rate following a Poisson distribution with the mean set by --rate.
+* *sweep:* Automatically determines the minimum and maximum rates the server can support by running synchronous and throughput benchmarks, and then runs a series of benchmarks equally spaced between the two rates. The number of benchmarks is set by --rate (default is 10).
 
 ### --data
 

@@ -25,7 +25,15 @@ In Generative AI systems, evaluating system performance including latency, throu
 
 GuideLLM is now officially a part of the vLLM upstream project. This toolset is one of the primary ways Red Hat internal teams are benchmarking customer models and will be the main framework we will recommend to our customers.
 
-NOTE: It's important to distinguish GuideLLM from Trusty AI. Trusty AI's scope is responsible AI (explainability, fairness, bias detection), while GuideLLM is focused purely on system performance benchmarking and optimization.
+[NOTE]
+
+***
+
+It's important to distinguish GuideLLM from Trusty AI. Trusty AI's scope is responsible AI (explainability, fairness, bias detection), while GuideLLM is focused purely on system performance benchmarking and optimization.
+
+That being said, there are some current crossovers. Trusty AI incorporates lm-eval-harness and GuideLLM is roadmapped to include this test harness as well. Trusty AI will continue to be an incorporated and supported operator deployment in RHOAI. There are currently no plans to have a similar deployment method for GuideLLM.
+
+***
 
 // -- Page Break --
 
