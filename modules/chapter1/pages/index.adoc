@@ -1,2 +1,46 @@
 [#eval-performance]
 = Model Performance Benchmarking with GuideLLM
+
+== Why Performance Evaluation Matters
+
+In Generative AI systems, evaluating system performance including latency, throughput, and resource utilization is just as important as evaluating model accuracy or quality. Here's why:
+
+. **User Experience**: High latency leads to sluggish interactions, which is unacceptable in chatbots, copilots, and real-time applications. Users expect sub-second responses.
+. **Scalability**: Throughput determines how many requests a system can handle in parallel. For enterprise GenAI apps, high throughput is essential to serve multiple users or integrate with high-frequency backend processes.
+. **Cost Efficiency**: Slow or inefficient systems require more compute to serve the same volume of requests. Optimizing performance directly reduces cloud GPU costs and improves ROI.
+. **Fair Benchmarking**: A model may appear “better” in isolated evaluation, but if it requires excessive inference time or hardware, it may not be viable in production. True model evaluation must balance quality and performance.
+. **Deployment Readiness**: Latency and throughput impact architectural decisions (e.g., batching, caching, distributed serving). Measuring them ensures a model is viable under real-world constraints.
+
+== What is GuideLLM?
+
+**GuideLLM** is a toolkit for evaluating and optimizing the deployment of LLMs. By simulating real-world inference workloads, GuideLLM enables you to easily assess the performance, resource requirements, and cost implications of deploying LLMs on various hardware configurations. This approach ensures efficient, scalable, and cost-effective LLM inference serving while maintaining high service quality.
+
+GuideLLM is now officially a part of the vLLM upstream project. This toolset is one of the primary ways Red Hat internal teams are benchmarking customer models and will be the main framework we will recommend to our customers.
+
+
+[]
+****
+### *Trusty AI vs GuideLLM*
+
+It's important to distinguish GuideLLM from Trusty AI. Trusty AI's scope is responsible AI (explainability, fairness, bias detection), while GuideLLM is focused purely on system performance benchmarking and optimization.
+
+That being said, there are some current crossovers. Trusty AI incorporates lm-eval-harness and GuideLLM is roadmapped to include this test harness as well. Trusty AI will continue to be an incorporated and supported operator deployment in RHOAI. There are currently no plans to have a similar deployment method for GuideLLM. 
+
+****
+
+---
+
+For our lab today, we will utilize the tekton pipeline on our OpenShift AI cluster. A pipeline deployment provides the following benefits:
+
+* Automation and reproducibility
+* Cloud-native / kubernetes-native
+* Scalability and resource optimization
+* Modular
+* Integration with existing MLOps workflows
+* Version control / auditability
+* Better handling of complex, multi-stage workflows
+
+[NOTE]
+Scalability and resource optimization: benchmarking can be resource intensive particularly when simulating high loads or testing large models. The dynamic provisioning/de-provisioning of necessary resources with tekton can handle this well for the expensive compute.
+
+---
